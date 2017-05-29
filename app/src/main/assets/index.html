@@ -9,10 +9,18 @@
             let val = document.getElementById("txtMsg").value;
             window.androidJs.setTextView(val);
         }
+        function openLogin(){
+            window.androidJs.openLogin();
+        }
     </script>
 </head>
 <body>
+当前用户名：<span id="user_login_name"></span>
 <input type="text" id="txtMsg">
-<input type="button" value="click me" onclick="setAndroidText()">
+<a href="awbeci://userlogin">打开登录窗口</a>
+<input type="button" value="open login" onclick="openLogin()">
+<script>
+    document.getElementById("user_login_name").innerHTML = androidJs.getUserLogin();
+</script>
 </body>
 </html>

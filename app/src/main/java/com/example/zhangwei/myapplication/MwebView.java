@@ -1,5 +1,7 @@
 package com.example.zhangwei.myapplication;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +27,7 @@ public class MwebView extends AppCompatActivity{
         WebSettings webSettings = webView.getSettings();
 //        webSettings.setAppCacheEnabled(true);
         webSettings.setJavaScriptEnabled(true);
-//        webView.addJavascriptInterface(this,"androidJs");
+        webView.addJavascriptInterface(this,"androidJs");
 //        webView.loadUrl("http://www.awbeci.com");
         webView.loadUrl("file:///android_asset/index.html");
 
@@ -49,4 +51,20 @@ public class MwebView extends AppCompatActivity{
 //            }
 //        });
 //    }
+    @JavascriptInterface
+    public String getUserLogin(){
+       SharedPreferences sharedPreferences = getSharedPreferences("users",MODE_PRIVATE);
+       return sharedPreferences.getString("user_login_name","zhangwei");
+    }
+    @JavascriptInterface
+    public void openLogin(){
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent();
+                intent.setClass(MwebView.this,UserLogin.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
