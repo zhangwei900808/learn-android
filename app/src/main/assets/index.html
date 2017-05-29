@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>index</title>
+    <script>
+        function showme(){
+            document.getElementById("txtMsg").value = "Hello";
+        }
+        function setAndroidText(){
+            let val = document.getElementById("txtMsg").value;
+            window.androidJs.setTextView(val);
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="txtMsg">
+<input type="button" value="click me" onclick="setAndroidText()">
+</body>
+</html>
